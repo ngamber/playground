@@ -1,10 +1,32 @@
 ---
 
+- name: add nodesource apt key
+  apt_key: url=https://deb.nodesource.com/gpgkey/nodesource.gpg.key state=present
 
+- name: add nodesource apt repos
+  apt_repository:
+    repo: "{{item}}"
+    state: present
+  with_items:
+     - "deb https://deb.nodesource.com/node_7.x {{ ansible_distribution_release}} main"
+     - "deb-src https://deb.nodesource.com/node_7.x {{ ansible_distribution_release}} main"
+  register: node_apt
 
+- name: update apt cache if needed
+  apt: update_cache=yes
+  when: node_apt.changed
+
+- name: install nodejs
+  apt: "name=nodejs state=present"
 
 - name: create systemd entry
-  template src=templates/doublerot13.j2 dest=/etc/systemd/system/doublerot13.service
+  template: src=templates/doublerot13.j2 dest=/etc/systemd/system/doublerot13.service
+
+- name: create web user
+  user: name=web group=web
+
+- name: create app directory with perms
+  file: path=/var/www/doublerot13 owner=web mode=755 state=directory
 
 - name: update app
   git: repo=https://github.com/ngamber/doublerot13 dest=/var/www/doublerot13
