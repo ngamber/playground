@@ -1,0 +1,13 @@
+[Service]
+WorkingDirectory=/var/www/doublerot13
+ExecStart=/usr/bin/node app.js
+Restart=always
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=doublerot13
+User=web
+Group=web
+Environment='NODE_ENV=production'
+
+[Install]
+WantedBy=multi-user.target

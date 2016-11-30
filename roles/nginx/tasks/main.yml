@@ -1,0 +1,19 @@
+---
+
+- name: install Nginx
+  apt: name=nginx state=installed
+
+- name: create nginx config
+  template: src=doublerot13.j2 dest=/etc/nginx/sites-available/doublerot13
+  notify: reload nginx
+
+- name: disable default site
+  file: path=/etc/nginx/sites-enabled/default state=absent
+  notify: reload nginx
+
+- name: enable application vhost
+  file: src=/etc/nginx/sites-available/doublerot13 dest=/etc/nginx/sites-enabled/doublerot13 state=link
+  notify: reload nginx
+
+- name: start nginx
+  service name=nginx state=started enabled=yes
