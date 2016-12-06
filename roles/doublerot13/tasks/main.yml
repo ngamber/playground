@@ -38,7 +38,8 @@
   file: path=/var/www/doublerot13 owner=web mode=755 state=directory
 
 - name: update app
-  git: repo=https://github.com/ngamber/doublerot13 dest=/var/www/doublerot13
+#  git: repo=https://github.com/ngamber/doublerot13 dest=/var/www/doublerot13
+  template: src=templates/app.js.j2 dest=/var/www/doublerot13/app.js
   notify: restart doublerot13
 
 - name: start app
