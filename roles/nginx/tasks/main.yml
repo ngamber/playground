@@ -16,4 +16,4 @@
   notify: reload nginx
 
 - name: start nginx
-  service name=nginx state=started enabled=yes
+  service: name=nginx state=started enabled=yes

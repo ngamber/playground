@@ -11,3 +11,4 @@
     - db_name: doublerot13
     - db_user: doublerot13
     - db_password: SuperSafePassword
+    - update_apt_cache: yes
