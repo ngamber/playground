@@ -9,13 +9,9 @@ http.createServer(function (req, res) {
   var ip = req.headers["x-forwarded-for"] || request.connection.remoteAddress;
   var geo = geoip.lookup(ip);
   res.writeHead(200, {'Content-Type': 'text/plain'});
-  res.write('<html>');
-  res.write('<body>');
-  res.write('<h1> your ip is: </h1>');
+  res.write('Your ip is: ');
   res.write(ip);
 //  res.write(JSON.stringify(geo)); # broken as ip is concatenated ipv6 and ipv4 addresses
-  res.write('</body>');
-  res.write('</html>');
   res.end();
 
 }).listen(PORT);
