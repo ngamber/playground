@@ -1,8 +1,18 @@
 var http = require('http');
 var PORT = process.env.PORT || 5000;
+var pg = require('pg');
+var connectionString = "pg://"{{db_user}}":"{{db_password}}"@localhost:5432/"{{db_name}}"";
 
 http.createServer(function (req, res) {
   console.log('%d request received', process.pid);
+  pg.connect(connectionString, function(err, client){
+	if (err) {
+		console.log ( err );
+	} else {
+		console.log ( result );
+	}
+  };
+  pg.end();
   res.writeHead(200, {'Content-Type': 'text/plain'});
   res.end('Hello world!\n');
 }).listen(PORT);
