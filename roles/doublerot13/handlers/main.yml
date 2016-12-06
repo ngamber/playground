@@ -1,4 +1,4 @@
 ---
 
 - name: restart doublerot13
-  service: name=doublerot13 state=reloaded
+  service: name=doublerot13 state=restarted
