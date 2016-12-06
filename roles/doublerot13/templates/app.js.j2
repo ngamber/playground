@@ -16,9 +16,9 @@ pg.connect(connectionString, function(err, client){
 if (err) {
   console.log ( err );
 } else {
-  console.log ( result );
+  pg.end();
 }
-pg.end();
+
 });
 
 console.log('%d listening on %d', process.pid, PORT);
