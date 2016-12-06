@@ -31,11 +31,11 @@
 - name: create app directory with perms
   file: path=/var/www/doublerot13 owner=web mode=755 state=directory
 
-  - name: install pg node package
-    npm: name=pg state=present path=/var/www/doublerot13
+- name: install pg node package
+  npm: name=pg state=present path=/var/www/doublerot13
 
-  - name: install geoip-lite node package
-    npm: name=geoip-lite state=present path=/var/www/doublerot13
+- name: install geoip-lite node package
+  npm: name=geoip-lite state=present path=/var/www/doublerot13
 
 - name: update app
 #  git: repo=https://github.com/ngamber/doublerot13 dest=/var/www/doublerot13
