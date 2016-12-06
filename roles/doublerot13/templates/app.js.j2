@@ -1,7 +1,7 @@
 var http = require('http');
 var PORT = process.env.PORT || 5000;
 var pg = require('pg');
-var connectionString = "pg://{{db_user}}:{{db_password}}@localhost:5432/{{db_name}};
+var connectionString = "pg://{{db_user}}:{{db_password}}@localhost:5432/{{db_name}}";
 var geoip = require('geoip-lite');
 
 http.createServer(function (req, res) {
